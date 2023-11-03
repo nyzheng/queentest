@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>國立中山大學全英語卓越教學中心</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            #container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+            #header {
+                height: 150px;
+                width: 90vw;
+                max-width: 1280px;
+                background-color: rgb(255, 255, 255);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            #header section {
+                margin: 0 20px;
+            }
+            #logo {
+                margin: 0 0 0 80px;
+            }
+            #logo img {
+                width: 300px;
+            }
+            #navigation-container {
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+                align-items: center;
+                width: 50vw;
+            }
+            .navigation {
+                list-style-type: none;
+                display: flex;
+            }
+
+            .navigation li {
+                font-weight: 600;
+                font-size: 15px;
+                margin: 10px;
+            }
+            .navigation a {
+                text-decoration: none;
+                color: rgb(63, 63, 63);
+            }
+            .navigation a:hover {
+                color: rgb(126, 126, 126); 
+            }
+            #function {
+                margin: 0 50px 0 0;
+            }
+            #lang {
+                display: flex;
+                justify-content: flex-end;
+                margin: 0 0 10px 0;
+            }
+            .lang-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 30px;
+                height: 30px;
+                background-color: #e04d5a;
+                color: white;
+                border-radius: 50%;
+                margin: 5px;
+                cursor: pointer;
+            }
+            #search {
+                display: flex;
+            }
+            #search-bar {
+                border: solid 1px #aaaaaa;
+                border-radius: 30px;
+                margin: 0 20px 0 0;
+                padding-inline-start: 20px;
+            }
+            #search-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 70px;
+                height: 30px;
+                margin: 0 5px 0 0;
+                border: none;
+                border-radius: 30px;
+                background-color: #ff9600;
+                cursor: pointer;
+            }
+            #search-button img {
+                width: 20px;
+                height: 20px;
+            }
+
+            #menu-container{
+                display: none;
+            }
+            
+            #nav-toggle {
+            display: none;
+            }
+
+            #banner {
+                display: flex;
+                justify-content: center;
+            }
+            #banner img {
+                width: 90vw;
+                min-width: 320px;
+                max-width: 1280px;
+            }
+
+            #download-wrap {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 0 0 20px 0;
+                width: 80vw;
+            }
+            
+            #download-head {
+                display: flex;
+                justify-content: center;
+                margin: 50px 0;
+                font-size: 30px;
+                flex-direction: column;
+                align-items: center;
+                letter-spacing: 2px;
+            }
+            
+            #download-head::after {
+                content: '';
+                display: block;
+                width: 20px;
+                height: 2px;
+                background-color: #ff9600;
+                margin-top: 5px;
+            }
+            #download-container  {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 10px; 
+            }
+
+            .download-detail {
+                text-align: center;
+                padding: 10px;
+                border: solid 1px #aaaaaa;
+                border-radius: 10px;
+                width: 250px;
+                height: 150px;
+                margin: 10px;
+            }
+            .download-detail img {
+                max-width: 100%;
+                height: auto;
+            }
+            .download-title {
+                margin: 15px;
+                position: absolute;
+            }
+            .download-check {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .download-check-btn {
+                width: 100px;
+                height: 30px;
+                background-color: #e04d5a;
+                color: #eeeeee;
+                border: none;
+                border-radius: 30px;
+                letter-spacing: 1px;
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                top: 100px;
+                cursor: pointer;
+            }
+            #footer-wrap {
+                width: 100%;
+                height: 30vh;
+                background-color: #d1d1d1;
+                display: flex;
+                align-items: center;    
+                justify-content: center;
+
+            }
+            #footer{
+                width: 80vw;
+                max-width: 1280px;
+                display: flex;
+            }
+            #footer-left {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40vw;
+                flex-wrap: wrap;
+            }
+
+            #footer-left ul li {
+                list-style-type: none;
+                font-size: 15px;
+                color: #757575;
+                font-weight: bold;
+                letter-spacing: 1px;
+                margin: 20px 50px;
+                width: 100px;
+            }
+            #footer-left a{
+                    text-decoration: none;
+                    color: rgb(90, 90, 90);
+            }
+
+            #footer-left a:hover {
+                color: rgb(126, 126, 126); 
+            }
+            #footer-left:hover{
+                color: #aaaaaa;
+            }
+        
+            #footer-right{
+                width: 40vw;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #footer-right-detail{
+                display: flex;
+                width: 400px;
+                padding: 0 0 10px 0;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between; 
+            }
+            
+            #footer-logo{
+                width: 100px;
+                height: 100px;
+            }
+            #footer-info-container{
+                display: flex;
+                flex-wrap: wrap;
+                font-size: 12px;
+                color: #757575;
+                letter-spacing: 1px;
+                font-weight: bold;  
+                justify-content: flex-end;  
+                flex-direction: column;
+
+            }
+            #footer-info-link{
+                display: flex;
+                align-items: center
+            }
+            #footer-info-link img{
+                height: 50px;
+                scale: 0.9;
+            }   
+            #footer-info-number{
+                display: flex;
+                align-items: center;
+                font-size: 13px;
+            }
+            #footer-search {
+                display: flex;
+                max-width: 400px;
+                justify-content: space-between;
+            }
+            #footer-search-bar {
+                border:none;
+                border-radius: 30px;
+                margin: 0 20px 0 0;
+                padding-inline-start: 20px;
+                width: 300px;
+            }
+            #footer-search-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100px;
+                height: 40px;
+                border: none;
+                border-radius: 30px;
+                background-color: #ff9600;
+                cursor: pointer;
+            }
+            #footer-search-button img {
+                width: 25px;
+                height: 25px;
+            }
+/*----------------------- 解析度1280以下----------------------- */
+            @media screen and (max-width: 1280px) {
+            #header{
+                justify-content: space-between;
+            }
+
+            #navigation-container{
+                display: none;
+            }
+
+            #function{
+                display: none;
+                }
+
+            .ham-origin {
+                padding: 0 10px 0 0;
+            }
+
+            .ham-bar {
+            height: 2px;
+            width: 20px;
+            position: absolute;
+            background: rgb(0, 0, 0);
+            margin: -1px 0 0 -13px;
+            transition: all .5s;
+            }
+            .ham-bar--top {
+            transform: translateY(-8px);
+            width: 30px;
+            }
+            .ham-bar--bottom {
+            transform: translateY(8px);
+            width: 25px;
+            }
+            #nav-toggle {
+            display: none;
+            }
+
+            #nav-toggle:checked ~ .ham .ham-bar--middle {
+            opacity: 0;
+            }
+
+            #nav-toggle:checked ~ .ham .ham-bar--top {
+            transform: rotate(-45deg);
+            }
+
+            #nav-toggle:checked ~ .ham .ham-bar--bottom {
+            transform: rotate(45deg);
+            }
+
+            }
+
+/*----------------------- 解析度1000以下----------------------- */
+    @media screen and (max-width: 1000px) {
+            #download-container{
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+                width: 400px;
+                align-items: center;
+            }
+            .download-detail{
+                width: 300px;
+            }
+            #footer-wrap{
+                height: 60vh;
+            }
+            #footer{
+                flex-direction: column;
+                align-items: center;
+                width: 50vw;
+            }
+            #footer-left{
+                margin: 0 0 50px 0;
+                width: 50vw;
+            }
+
+            .footer-left-detail{
+                width: 20vw ;
+                
+            }}
+/*----------------------- 解析度768以下----------------------- */
+            @media screen and (max-width: 768px) {
+                #logo img {
+                width: 250px;}
+
+                #download-container{
+                    width: 300px;
+                }
+                #footer{
+            width: 100%;
+                }
+            #footer-left{
+                margin: 0 0 30px 0;
+                flex-wrap: nowrap;
+                    width: 100vw;
+            }
+            .footer-left-detail{
+                width: 150px;
+                justify-content: center;
+            }
+            
+            #footer-right{
+                justify-content: center;
+                align-items: center;
+                width: 100vw;
+                scale: 0.9;
+            }
+
+            #footer-right-detail{
+            flex-direction: column;
+            width: 300px;
+            }
+
+            #footer-search{
+                width: 220px;
+            }
+        #footer-search-bar{
+            width: 130px;
+            margin: 0 5px 0 0;
+        }}
+
+      
+      
+        </style>
+    </head>
+    <body>
+        <div id="wrap">
+            <div id="container">
+                <div id="header">
+                    <section id="logo">
+                        <img src="public\home\首頁_3.png" alt="首頁_3.png" />
+                    </section>
+                    <section id="navigation-container">
+                        <ul class="navigation">
+                            <li><a href="#">最新消息</a></li>
+                            <li><a href="#">關於我們</a></li>
+                            <li><a href="#">英語課程</a></li>
+                            <li><a href="#">國際沙龍</a></li>
+                            <li><a href="#">英語線上學習</a></li>
+                        </ul>
+                        <ul class="navigation">
+                            <li><a href="#">英文畢業門檻</a></li>
+                            <li><a href="#">英語檢定專區</a></li>
+                            <li><a href="#">法規&表單</a></li>
+                            <li><a href="#">常見問題</a></li>
+                            <li><a href="#">聯繫我們</a></li>
+                        </ul>
+                    </section>
+                    <section id="function">
+                        <div id="lang">
+                            <div class="lang-btn" id="cn">中</div>
+                            <div class="lang-btn" id="en">EN</div>
+                        </div>
+                        <div id="search">
+                            <input type="text" id="search-bar" placeholder="關鍵字搜尋" />
+                            <button id="search-button"><img src="public\home\首頁_4.png" alt="" /></button>
+                        </div>
+                    </section>
+
+                    <input id="nav-toggle" type="checkbox">
+                    <label for="nav-toggle" class="ham">
+                      <div class="ham-origin">
+                        <div class="ham-bar ham-bar--top"></div>
+                        <div class="ham-bar ham-bar--middle"></div>
+                        <div class="ham-bar ham-bar--bottom"></div>
+                      </div>
+                    </label>
+                    
+                </div>
+                
+                <div id="banner">
+                    <img src="public\pagination\法規&表單\素材\法規&表單_3.png" alt="" />
+                </div>
+                <div id="download-wrap">
+                    <div id="download-head">下載專區</div>
+                    <div id="download-container">
+                            <div class="download-detail">
+                                <div class="download-title">
+                                    <p>懶人包</p>
+                                </div>
+                                <div class="download-check">
+                                    <button class="download-check-btn">查看更多</button>
+                                </div>
+                            </div>
+                            <div class="download-detail">
+                                <div class="download-title">
+                                    <p>學分抵免表</p>
+                                </div>
+                                <div class="download-check">
+                                    <button class="download-check-btn">查看更多</button>
+                                </div>
+                            </div>
+                            <div class="download-detail">
+                                <div class="download-title">
+                                    <p>修課規範之法規</p>
+                                </div>
+                                <div class="download-check">
+                                    <button class="download-check-btn">查看更多</button>
+                                </div>
+                            </div>
+                            <div class="download-detail">
+                                <div class="download-title">
+                                    <p>英文畢業門檻之法規</p>
+                                </div>
+                                <div class="download-check">
+                                    <button class="download-check-btn">查看更多</button>
+                                </div>
+                            </div>
+                            <div class="download-detail">
+                                <div class="download-title">
+                                    <p>分級變更申請表</p>
+                                </div>
+                                <div class="download-check">
+                                    <button class="download-check-btn">查看更多</button>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="footer-wrap">
+                    <div id="footer">
+                    <div id="footer-left">
+                        <ul class="footer-left-detail">
+                            <li><a href="#">最新消息</a></li>
+                            <li><a href="#">關於我們</a></li>
+                            <li><a href="#">英語課程</a></li>
+                            <li><a href="#">國際沙龍</a></li>
+                            <li><a href="#">英語線上學習</a></li>
+                        </ul>
+                        <ul class="footer-left-detail">
+                            <li><a href="#">英文畢業門檻</a></li>
+                            <li><a href="#">英語檢定專區</a></li>
+                            <li><a href="#">法規&表單</a></li>
+                            <li><a href="#">常見問題</a></li>
+                            <li><a href="#">聯繫我們</a></li>
+                        </ul>
+                </div>
+                <div id="footer-right">
+                    <div id="footer-right-detail">
+                        <div><img id="footer-logo" src="public\home\首頁_14.png" alt="首頁_14.png"></div>
+                        <div id="footer-info-container">
+                            <div id ="footer-info-link" >
+                                <img src="public\home\首頁_15.png" alt="首頁_15.png">
+                                <img src="public\home\首頁_16.png" alt="首頁_16.png">
+                                <img src="public\home\首頁_17.png" alt="首頁_17.png">
+                                <img src="public\home\首頁_18.png" alt="首頁_18.png">
+                            </div>
+                            <div id="footer-info-number">Tel: 07-5252000 通識英語分機 5808</div>
+                        </div>
+                    </div>
+                    <div id="footer-search">
+                        <input type="text" id="footer-search-bar" placeholder="關鍵字搜尋" />
+                        <button id="footer-search-button"><img src="public\home\首頁_4.png" alt="" /></button>
+                    </div>
+                </div></div>
+            </div>
+        </div>
+    </body>
+</html>
